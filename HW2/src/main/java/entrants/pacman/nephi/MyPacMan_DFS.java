@@ -51,7 +51,9 @@ public class MyPacMan_DFS extends PacmanController {
 		}
 		//Null Handler
 		else{
-			myMove= game.getNextMoveTowardsTarget(top.nodeIndex, dfsStack.pop().nodeIndex, Constants.DM.PATH);
+			dfsStack.pop();
+			Node newTop=dfsStack.peek();
+			myMove= game.getNextMoveTowardsTarget(top.nodeIndex, newTop.nodeIndex, Constants.DM.PATH);
 			
 		}
 		return myMove;
