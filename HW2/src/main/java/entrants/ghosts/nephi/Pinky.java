@@ -1,4 +1,4 @@
-package entrants.ghosts.username;
+package entrants.ghosts.nephi;
 
 import pacman.controllers.IndividualGhostController;
 import pacman.controllers.MASController;
