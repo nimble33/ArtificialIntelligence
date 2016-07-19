@@ -13,4 +13,5 @@ Reference: http://www.pacmanvghosts.co.uk/
 		i.  DFS
 		ii. BFS
 	b. Informed Search
-		i. A*
+		i. Greedy Best First Search
+		ii. A* - TO DO
