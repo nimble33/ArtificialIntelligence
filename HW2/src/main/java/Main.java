@@ -26,16 +26,6 @@ public class Main {
 		//Executor executor = new Executor(true, true);
 		//executor.runGameTimed(new MyPacMan_DFS(), new RandomGhosts(), true);
 
-		//2.BFS Implementation - Uninformed Search
-		//Partially Observable
-		//Executor executor = new Executor(true, true);
-		// executor.runGameTimed(new MyPacMan_BFS(), new POCommGhosts(50), true);
-
-		//3.AStar Implementation - Informed Search - TODO
-		//Fully Observable
-		//Executor executor = new Executor(false, true);
-		//executor.runGameTimed(new MyPacMan_AStar(), new POCommGhosts(50), true);
-
 		//4.Greedy BFS - Informed Search
 		//Fully Observable
 		Executor executor = new Executor(false, true);

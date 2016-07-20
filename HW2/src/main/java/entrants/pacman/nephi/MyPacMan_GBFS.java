@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-
 import java.util.Set;
-
 
 import pacman.controllers.PacmanController;
 import pacman.game.Constants.DM;
@@ -15,9 +13,15 @@ import pacman.game.Game;
 
 
 /*
- * Implementing Greedy Best First Search
- * Code taken from Examples - POPacMan.java
- * GBFS - Applicable only to PacMan
+ * Greedy Best First Search - Informed Search
+ * Starting Lines of Code taken from Examples - POPacMan.java
+ * Search Applies only to PacMan - Ghosts are Neglected
+ * 
+ * 1. Retrieve all Node Indices of Targets
+ * 2. Initialize Visited, HashMap to store heuristics and their corresponding Node Indices
+ * 3. The heuristics- Manhattan Distance are sorted in ascending order. 
+ * 4. The HashMap consists of successors of current Node arranged in increasing orders
+ * 5. Return the Node with the best heuristic as the targetNode
  */
 public class MyPacMan_GBFS extends PacmanController {
 
@@ -77,7 +81,7 @@ public class MyPacMan_GBFS extends PacmanController {
 			}
 
 		}   
-		// Sort the Keys 
+		// Sort the Keys - Heuristic in increasing order
 		ArrayList<Integer> sortedKeysList = new ArrayList<>(heuristicMap.keySet());
 		Collections.sort(sortedKeysList);
 		//Get the Node Index of the first value of the ArrayList
