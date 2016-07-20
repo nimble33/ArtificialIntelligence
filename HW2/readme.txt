@@ -13,4 +13,6 @@ Reference: http://www.pacmanvghosts.co.uk/
 		i.  DFS
 	b. Informed Search
 		i. Greedy Best First Search
+
+The comments of the above Implementations are included in Report.pdf
 		
