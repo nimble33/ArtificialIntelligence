@@ -1,6 +1,5 @@
 import pacman.Executor;
 import entrants.pacman.nephi.MyPacMan_BFS;
-//import entrants.pacman.nephi.MyPacMan_GBFS;
 import entrants.pacman.nephi.MyPacMan;
 import entrants.pacman.nephi.MyPacMan_AStar;
 import entrants.pacman.nephi.MyPacMan_DFS;
@@ -26,10 +25,17 @@ public class Main {
 		//Executor executor = new Executor(true, true);
 		//executor.runGameTimed(new MyPacMan_DFS(), new RandomGhosts(), true);
 
-		//4.Greedy BFS - Informed Search
+		//2.Greedy BFS - Informed Search
+		//Fully Observable
+		//Executor executor = new Executor(false, true);
+		//executor.runGameTimed(new MyPacMan_GBFS(), new POCommGhosts(50), true);
+
+		
+		//3.AStar Implementation - Informed Search 
 		//Fully Observable
 		Executor executor = new Executor(false, true);
-		executor.runGameTimed(new MyPacMan_GBFS(), new POCommGhosts(50), true);
+		executor.runGameTimed(new MyPacMan_AStar(), new POCommGhosts(50), true);
+
 
 
 	}
