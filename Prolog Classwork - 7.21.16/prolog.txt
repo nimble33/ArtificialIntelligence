@@ -1,0 +1,40 @@
+QUESTION:
+
+   woman(vincent). 
+   woman(mia). 
+   man(jules). 
+   person(X):-  man(X);  woman(X). 
+   loves(X,Y):-  father(X,Y). 
+   father(Y,Z):-  man(Y),  son(Z,Y). 
+   father(Y,Z):-  man(Y),  daughter(Z,Y).
+
+
+Answers:
+
+1. Facts:
+	3
+	woman(vincent). 
+   	woman(mia). 
+   	man(jules). 
+
+2. Rules:
+	4
+   	person(X):-  man(X);  woman(X). 
+   	loves(X,Y):-  father(X,Y). 
+   	father(Y,Z):-  man(Y),  son(Z,Y). 
+   	father(Y,Z):-  man(Y),  daughter(Z,Y).
+3. Clauses:
+	7(All the statements in the question)
+4. Predicates
+	5
+	woman,man, person,loves,father)
+5. Heads and Goals:
+   person(X):-  man(X);  woman(X).
+	Head:person(X), Goals(2):man(X),woman(X) 
+   loves(X,Y):-  father(X,Y). 
+	Head -> loves(X,Y), Goals(1): father(X,Y)
+   father(Y,Z):-  man(Y),  son(Z,Y). 
+	Head -> father(Y,Z), Goals(2): man(Y),son(Z,Y)
+   father(Y,Z):-  man(Y),  daughter(Z,Y).
+	Head -> father(Y,Z), Goals(2):  man(Y), daughter(Z,Y)
+	
