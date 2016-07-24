@@ -1,7 +1,7 @@
 import pacman.Executor;
 import entrants.pacman.nephi.MyPacMan_Adversarial;
 import examples.commGhosts.POCommGhosts;
-
+import pacman.controllers.examples.StarterGhosts;
 /**
  * Created by pwillic on 06/05/2016.
  */
@@ -18,7 +18,9 @@ public class Main {
 
 		//Fully Observable
 		Executor executor = new Executor(false, true);
-		executor.runGameTimed(new MyPacMan_Adversarial(), new POCommGhosts(50), true);
+		
+		//executor.runGameTimed(new MyPacMan_Adversarial(), new POCommGhosts(50), true);
+		executor.runGameTimed(new MyPacMan_Adversarial(), new StarterGhosts(), true);
 
 
 
