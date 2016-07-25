@@ -1,6 +1,8 @@
 package entrants.pacman.nephi;
 import pacman.controllers.PacmanController;
 import pacman.controllers.examples.StarterGhosts;
+import pacman.game.Constants.DM;
+import pacman.game.Constants.GHOST;
 import pacman.game.Constants.MOVE;
 import pacman.game.Game;
 
@@ -18,7 +20,7 @@ public class MyPacMan_Adversarial extends PacmanController {
 
 			gc.advanceGame(m, ghosts.getMove(game, -1));
 
-			int tempScore = alphaBetaPruning(gc, MAX_DEPTH,Integer.MIN_VALUE,Integer.MAX_VALUE, false);
+			int tempScore = alphaBetaPruning(gc, MAX_DEPTH,Integer.MIN_VALUE,Integer.MAX_VALUE, true);
 			if (bestScore < tempScore) {
 				bestScore = tempScore;
 				bestMove = m;
@@ -26,11 +28,14 @@ public class MyPacMan_Adversarial extends PacmanController {
 
 
 		}
-		//System.out.println("Best Score:" + bestScore); 
-		//System.out.println( "Move:"+ bestMove);
 		return bestMove;
 	}
 
+/*
+ * Algorithm Source:
+ * https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
+ */
+	
 	public int alphaBetaPruning(Game gc,int maxdepth, int alpha, int beta, boolean max) {
 		// Terminal Node case
 		if (maxdepth < 1) return Evaluate(gc);
@@ -44,7 +49,7 @@ public class MyPacMan_Adversarial extends PacmanController {
 				highscore = Math.max(highscore, temp);
 				alpha = Math.max(alpha,highscore);
 				if(beta <= alpha){
-					break;
+					break; //Beta cutoff
 				}
 			}
 
@@ -60,24 +65,54 @@ public class MyPacMan_Adversarial extends PacmanController {
 				highscore = Math.min(highscore, temp);
 				beta = Math.min(beta,highscore);
 				if(beta <= alpha){
-					break;
+					break; //Alpha cutoff
 				}
 			}
 			return highscore;
 		}
 	}
-	private int Evaluate(Game gameState) {
 
-		int score = 0;
-		if ( gameState.wasPacManEaten() ) {
-			score = Integer.MIN_VALUE;
+	public static int Evaluate(Game gameState) {
+		//Reset
+		if (gameState.wasPacManEaten()) {
+			return Integer.MIN_VALUE;
 		}
+		int currentIndex = gameState.getPacmanCurrentNodeIndex();
+
+		int ghostScore = 0;
 		//Capture distances between pacman and ghosts
+		for (GHOST ghost : GHOST.values()) {
+			int ghostIndex=gameState.getGhostCurrentNodeIndex(ghost);
+			int distance = gameState.getShortestPathDistance(currentIndex,ghostIndex);
+			//If ghost Edible +ve Multiplier
+			if(gameState.isGhostEdible(ghost)){
+				ghostScore +=(30 / distance);
+			}
+			//Ghost not Edible -ve Multiplier
+			else{
+				ghostScore += -1 *(30 / distance);	
+			}
+
+		}
 
 		//Capture pill data (Available, distance)
+		int[] aPI = gameState.getActivePillsIndices();
+		int[] aPPI = gameState.getActivePowerPillsIndices();
+		int[] allActivePillIndices = merge(aPI,aPPI);
+		int pillDistance =  gameState.getShortestPathDistance(currentIndex,gameState.getClosestNodeIndexFromNodeIndex(currentIndex, allActivePillIndices, DM.PATH));
 
 
-		return score;
+		//Heuristic
+		return ghostScore + gameState.getScore() * 100 - pillDistance;
 	}
+
+	private static int[] merge(int[] aPI, int[] aPPI) {
+		int length = aPI.length + aPPI.length;
+		int[] result = new int[length];
+		System.arraycopy(aPI, 0, result, 0, aPI.length);
+		System.arraycopy(aPPI, 0, result, aPI.length, aPPI.length);	 
+		return result;
+	}
+
 
 }
