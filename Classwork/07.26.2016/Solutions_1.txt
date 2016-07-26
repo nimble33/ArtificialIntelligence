@@ -1,0 +1,57 @@
+1
+a) Write a Prolog program that would check if there is a route from a hall A to a hall B. Note that the way the route rule is written is actually a recursion
+
+
+route(X,Y):-
+findall(Intermediate, get_intermediate(X,Y,Intermediate), Intermediates),
+    write(Intermediates).
+get_intermediate(Start, End, []) :- 
+    footpath(Start, End);motorway(Start,End).
+ get_intermediate(Start, End, [Intermediate|Result]) :-
+    footpath(Start, Intermediate);motorway(Start,End),
+    /*recursion*/
+    get_intermediate(Intermediate, End, Result).   
+
+b) Use 5 different test cases to try out your program by asking Prolog if there is a route from one hall to another, for example: 
+
+Test Case 1.?- route(56,57). 
+Solution:
+[[], [57|_G6299], [58|_G6293]]
+true
+
+Test Case 2.?- route(69,58). 
+Solution:
+[[76|_G6293]]
+true
+
+Test Case 3.?- route(52,69).
+Solution:
+[[53|_G6335], [54|_G6329], [57|_G6323], [59|_G479], [60|_G473], [62|_G467], [68|_G461], [83|_G455]]
+true
+ 
+
+Test Case 4.?- route(76,83). 
+Solution:
+[]
+true
+Test Case 5.?- route(65,68). 
+Solution:
+[[], [68|_G6299], [83|_G6293]]
+true
+
+c) write Prolog clauses (facts, rules, or queries) to express any 6 sentences of your choice. 
+
+1. Is there a motorway that connects Snell engineering Centre (58) to Snell Library (59)?  
+	?-motorway(58,59). - false
+2. A route can be a footpath or a motorway
+	route(X, Y) :- footpath(X, Y); motorway(X, Y).
+3. Is there a footpath that connects Snell engineering Centre (58) to Snell Library (59)?  
+	?-footpath(58,59). - true
+4. Is there a route between 56 and 57
+	?- route(56,57). - true
+5. A route should be a footpath and a motorway (Just an example)
+	route(X, Y) :- footpath(X, Y), motorway(X, Y).
+6. Is there a footpath between 58 and 59 which is also a motorway?
+	?-footpath(58,59),motorway(58,59). -false
+
+
