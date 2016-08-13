@@ -3,6 +3,8 @@ import re
 import string
 
 trainActual = open('train/trainActual.csv','w+')
+trainActualStars = open('train/trainActualStars.csv','w+')
+
 
 def main():
 	punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
@@ -21,6 +23,7 @@ def main():
 		if reviewRating < 3:
 			polarity = "negative"
 		trainActual.write(polarity+","+no_punct.replace('\n',' ').encode('utf8')+"\n")
+		trainActualStars.write(str(reviewRating) + "," + no_punct.replace('\n', ' ').encode('utf8') + "\n")
 
 
 def readData(filePath):

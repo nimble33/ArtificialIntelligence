@@ -1,6 +1,7 @@
 import json,os
 
 testActual = open('test/testActual.csv','w+')
+testActualStars = open('test/testActualStars.csv','w+')
 testPredict=open('test/testPredict.csv','w+')
 
 def main():
@@ -18,9 +19,8 @@ def main():
 			polarity = "positive"
 		if reviewRating < 3:
 			polarity = "negative"
-		#stringtoWrite=polarity+","+reviewText.replace('\n',' ').encode('utf8')+"\n"
-		#stringRemoveQuotes=stringtoWrite.replaceAll("^\"|\"$", "");
 		testActual.write(polarity+", "+no_punct.replace('\n',' ').encode('utf8')+"\n")
+		testActualStars.write(str(reviewRating) + ", " + no_punct.replace('\n', ' ').encode('utf8') + "\n")
 		testPredict.write(no_punct.replace('\n',' ').encode('utf8')+"\n")
 
 def readData(filePath):
