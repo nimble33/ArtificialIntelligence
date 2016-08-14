@@ -11,6 +11,7 @@ A. POSITIVE NEGATIVE PREDICTION:
 
 Naive Bayes training
 Naive Bayes Testing
+accuracy Naive Bayes - Positive Negative: 80.1
 ('Time taken Naive Bayes Pos Neg:', 2.371000051498413)
 SVM Training
 SVM Testing
