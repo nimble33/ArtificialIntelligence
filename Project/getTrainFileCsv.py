@@ -1,6 +1,6 @@
 import json,os
 import re
-import string
+
 
 trainActual = open('train/trainActual.csv','w+')
 trainActualStars = open('train/trainActualStars.csv','w+')
