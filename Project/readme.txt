@@ -175,6 +175,11 @@ Confusion matrix SVM Predefined - Stars:
 accuracy SVM Predefined - Stars :  0.48
 ('Time taken SVM Stars:', 3.7039999961853027)
 
+--------------------------------------------------------------------------------------------------
+Under Development:TeFy: Text Classify
+--------------------------------------------------------------------------------------------------
+
+An UI based on Sentiment Analysis: It can be found here: http://nimble33.pythonanywhere.com/
 
 
 
