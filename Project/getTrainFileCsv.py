@@ -2,7 +2,9 @@ import json,os
 import re
 
 
+#Contains the Original Values as Positive/Negative classification
 trainActual = open('train/trainActual.csv','w+')
+#Contains just the review. Should predict on these reviews
 trainActualStars = open('train/trainActualStars.csv','w+')
 
 
@@ -39,5 +41,4 @@ def removePunctuation(wordList):
 	punct_remove = [punctuation.sub(" ", word) for word in wordList]
 	return punct_remove
 
-if __name__ == '__main__':
-  main()
+main()

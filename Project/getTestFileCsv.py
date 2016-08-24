@@ -1,11 +1,16 @@
 import json,os
 
+#Contains the Original Values as Positive/Negative classification
 testActual = open('test/testActual.csv','w+')
+#Contains the Original Values as [1,5] classification
 testActualStars = open('test/testActualStars.csv','w+')
+#Contains just the review. Should predict on these reviews
 testPredict=open('test/testPredict.csv','w+')
 
 def main():
+	# Preprocessing: Remove Punctuation
 	punctuations = '''!()-[]{};:'"\,<>./?@#$%^&*_~'''
+	# Change this path value to test if you have a different dataset
 	dataFilePath= os.path.abspath('yelp_dataset_test_200.json')
 	dataContainer=readData(dataFilePath)
 	for review_data in dataContainer:
